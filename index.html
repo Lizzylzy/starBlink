@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Star Blink</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="sky"></div>
+</body>
+<script>
+        let sky = document.getElementById('sky');
+        function Star() {};//构造函数
+        var starObj = new Star();//创建Star实例
+        Star.prototype.drawStar = function() {//创建一个原型方法drawStar
+            let starWrapper = document.createElement('div');
+            starWrapper.style.width = '7px';
+            starWrapper.style.height = '7px';
+            starWrapper.style.position = 'relative';
+            starWrapper.style.left = Math.floor(document.body.clientWidth * Math.random()) + 'px'; //div的left值不能超出屏幕的宽度
+            starWrapper.style.top = Math.floor(document.body.clientHeight * Math.random()) + 'px'; //div的top值不能超出屏幕的高度
+            starWrapper.style.overflow = 'hidden';
+            sky.appendChild(starWrapper);
+            let starImg = document.createElement('img');
+            starImg.style.width = '49px';
+            starImg.style.height = '7px';
+            starImg.src = 'images/star.png';
+            starImg.style.position = 'absolute';
+            starImg.style.top = '0';
+            starWrapper.appendChild(starImg);
+            play(starImg);
+        }
+        //星星闪烁的方法
+        function play(ele) {
+            let i = Math.floor(Math.random()*7);
+            let timer = setInterval(function(){
+                if (i < 7) {
+                    ele.style.left = -i*7 + 'px';
+                    i++;
+                } else {
+                    i = 0
+                }
+            },100);
+        }
+        //创建50个Star实例
+        for (let i = 0; i < 50; i++) {
+            let newObj = new Star();
+            newObj.drawStar();
+        }
+    </script>
+</html>
