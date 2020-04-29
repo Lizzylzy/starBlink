@@ -36,6 +36,8 @@
         }
         //星星闪烁的方法
         function play(ele) {
+            //Math.random()生成0（包含）~ 1（不包含）之间的随机数
+            //Math.floor(x)返回小于等于x的最大整数，向下取整
             let i = Math.floor(Math.random()*7);
             let timer = setInterval(function(){
                 if (i < 7) {
@@ -49,7 +51,7 @@
         //创建50个Star实例
         for (let i = 0; i < 50; i++) {
             let newObj = new Star();
-            newObj.drawStar();
+            newObj.drawStar();//调用原型上的drawStar方法
         }
     </script>
 </html>
